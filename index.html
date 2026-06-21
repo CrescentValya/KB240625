@@ -11,17 +11,17 @@
 </head>
 <body>
 
-  <!-- FOR YOU PILL (global, hidden until stage 4) -->
-  <button class="for-you-pill hidden" id="for-you-global"><span class="pill-text">▶ For you</span>
-    <span class="bars-icon">
-      <span></span><span></span><span></span><span></span>
-    </span>
+  <!-- FOR YOU PILL global -->
+  <button class="for-you-pill hidden" id="for-you-global">
+    <span class="pill-label">▶ For you</span>
+    <span class="bars-icon"><span></span><span></span><span></span><span></span></span>
   </button>
+
   <!-- Volume slider -->
   <div class="volume-wrap" id="volume-wrap">
-    <span>🔈</span>
-    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50"/>
-    <span>🔊</span>
+    <span class="volume-icon">🔈</span>
+    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="25"/>
+    <span class="volume-icon">🔊</span>
   </div>
 
   <!-- STAGE 1 -->
@@ -46,12 +46,6 @@
       <h1 class="main-title main-title--sm">Today is a <span class="accent">special</span> day</h1>
     </div>
     <div class="s2-envelope" id="s2-click">
-      <div class="card-peek-wrap">
-        <div class="card-peek">
-          <p class="peek-to">To Kylar</p>
-          <p class="peek-hint">click to continue</p>
-        </div>
-      </div>
       <img src="envelope-open.png" alt="envelope open" class="env-img env-open"/>
     </div>
   </div>
@@ -59,7 +53,7 @@
   <!-- STAGE 3 -->
   <div class="stage" id="s3">
     <button class="back-arrow" id="back-s2">&#8592;</button>
-    <div class="card-portrait" id="s3-click">
+    <div class="card-portrait clickable" id="s3-click">
       <img src="Robin.png" alt="Robin" class="robin-img"/>
       <h2 class="hbd-title">Happy Birthday<br/>Kylar</h2>
       <p class="card-click-hint">Click here</p>
@@ -69,10 +63,10 @@
   <!-- STAGE 4 -->
   <div class="stage" id="s4">
     <button class="back-arrow" id="back-s3">&#8592;</button>
-    <div class="curly-arrow-wrap" id="arrow-top">
-      <svg class="curly-svg-top" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M110 85 C90 75 55 55 45 35 C35 15 50 5 63 9 C76 13 72 30 58 28 C44 26 40 13 50 6" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M43 13 C43 13 50 5 50 6 C50 7 57 11 57 11" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <div class="curly-arrow-wrap">
+      <svg class="curly-svg-top" viewBox="0 0 80 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M70 80 C55 65 30 45 22 28 C14 11 26 2 38 6 C50 10 46 26 34 23 C22 20 18 8 28 2" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M20 9 C20 9 28 2 28 2 C28 3 34 8 34 8" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
     </div>
     <div class="card-portrait card-portrait--song" id="s4-click">
@@ -85,28 +79,24 @@
   <!-- STAGE 5 -->
   <div class="stage" id="s5">
     <button class="back-arrow" id="back-s4">&#8592;</button>
-    <div class="card-portrait card-portrait--letter">
+    <div class="card-portrait card-portrait--letter" id="letter-card">
       <div class="letter-content">
         <p class="letter-greeting">Feliz cumpleaños, Kylar.</p>
-
         <p class="letter-body"><span class="c">T</span>here are people who walk into your life and leave it a little brighter just by being in it. You are one of those people. On your birthday, I want you to know how much light you carry with you without even trying. Your laugh, your warmth, the quiet way you make ordinary moments feel worth r<span class="c">e</span>membering, none of it is small.</p>
-
         <p class="letter-body">I hope this year brings you everything your heart has been holding onto quietly. I hope it is full of moments that feel like <span class="c">a</span>rriving somewhere you truly belong. May every dream you have whispered to yourself find its way to you. You deserve the kind of happiness that sneaks up on you and stays.</p>
-
         <p class="letter-body">The universe knows your na<span class="c">m</span>e, Kylar. I like to think it is already writing down your wishes before you even finish making them. You deserve the world, and so much more than you probably allow yourself t<span class="c">o</span> imagine.</p>
-
         <p class="letter-body">So here is my birthday wish for you: may this year carry you somewhere wonderful. May it be full of open roads, quiet joys, and all the in-between moments that end up becoming your favorite memories. <span class="c">K</span>eep dreaming big, you deserve every bit of it. And I will be just a little selfish and borrow a bit of your birthday magic to wish that next <span class="c">y</span>ear, I get to give you something in person. You deserve that. More than you al<span class="c">l</span>ow yourself to believe. More than you <span class="c">a</span>re probably even aware of.</p>
-
         <p class="letter-sign">With lots of love,<br/>Valentina</p>
         <p class="letter-ps">P.S. I really mean it. T<span class="c">r</span>uly.</p>
         <p class="letter-secret">Some things are only seen by those who <strong>look twice.</strong></p>
       </div>
     </div>
+    <!-- Side nudge pointing at the letter card -->
     <div class="side-nudge" id="side-nudge">
       <p class="nudge-text">Once you finish you can click once more</p>
       <svg class="curly-svg-side" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path d="M50 8 C50 8 15 25 18 55 C21 78 45 82 42 88" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path d="M33 82 C33 82 41 89 42 88 C43 87 44 79 44 79" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M50 8 C50 8 15 25 18 55 C21 78 10 82 8 88" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M2 80 C2 80 8 89 8 88 C9 87 16 83 16 83" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
       </svg>
     </div>
   </div>

@@ -27,53 +27,59 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 
 .s1-text {
   position: absolute;
-  top: 15vh; /* Brought down from the very top */
+  bottom: clamp(320px, 48vh, 520px);
   width: 100%;
   text-align: center;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 12px; /* Titles brought closer together */
+  gap: 8px;
 }
 
 .main-title {
   font-family: var(--fp);
-  font-size: 96px; 
+  font-size: 96px;
   font-weight: 400;
   color: var(--beige);
   line-height: 1.1;
   opacity: 0.9;
 }
-.main-title--sm {
-  font-size: 64px; 
-}
+.main-title--sm { font-size: 64px; }
 .main-title .accent { color: var(--garnet); }
 
-/* Subtitle and Blinking Arrows */
 .subtitle {
   font-family: var(--fp);
-  font-size: 32px; 
+  font-size: 32px;
   font-weight: 400;
   color: var(--beige);
   opacity: 0.8;
   letter-spacing: 0.04em;
 }
-.subtitle::before { 
-  content: "« "; 
-  animation: blink 1.5s infinite alternate; 
+
+/* Down arrows below subtitle */
+.s1-arrows {
+  display: flex;
+  gap: 32px;
+  margin-top: 8px;
 }
-.subtitle::after { 
-  content: " »"; 
-  animation: blink 1.5s infinite alternate; 
+.s1-arrows span {
+  font-size: 1.4rem;
+  color: var(--beige);
+  opacity: 0;
+  animation: arrowPulse 1.8s ease-in-out infinite;
 }
-@keyframes blink {
-  0% { opacity: 1; }
-  100% { opacity: 0.2; }
+.s1-arrows span:nth-child(1) { animation-delay: 0s; }
+.s1-arrows span:nth-child(2) { animation-delay: 0.2s; }
+@keyframes arrowPulse {
+  0%   { opacity: 0; transform: translateY(-4px); }
+  40%  { opacity: 0.9; transform: translateY(0); }
+  70%  { opacity: 0.9; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(4px); }
 }
 
 .s1-envelope {
   position: absolute;
-  bottom: 0; 
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;

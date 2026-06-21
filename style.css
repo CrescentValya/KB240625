@@ -55,26 +55,40 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   opacity: 0.8;
   letter-spacing: 0.04em;
 }
+.subtitle::before { content: none; }
+.subtitle::after { content: none; }
 
-/* Down arrows below subtitle */
-.s1-arrows {
+/* Subtitle row with arrows on each side */
+.subtitle-row {
   display: flex;
-  gap: 32px;
-  margin-top: 8px;
+  align-items: center;
+  gap: 16px;
 }
-.s1-arrows span {
-  font-size: 1.4rem;
+
+.subtitle {
+  font-family: var(--fp);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--beige);
+  opacity: 0.8;
+  letter-spacing: 0.04em;
+}
+.subtitle::before { content: none; }
+.subtitle::after { content: none; }
+
+.s1-arr {
+  font-size: 2rem;
   color: var(--beige);
   opacity: 0;
   animation: arrowPulse 1.8s ease-in-out infinite;
 }
-.s1-arrows span:nth-child(1) { animation-delay: 0s; }
-.s1-arrows span:nth-child(2) { animation-delay: 0.2s; }
+.s1-arr:nth-child(1) { animation-delay: 0s; }
+.s1-arr:nth-child(3) { animation-delay: 0.25s; }
 @keyframes arrowPulse {
-  0%   { opacity: 0; transform: translateY(-4px); }
-  40%  { opacity: 0.9; transform: translateY(0); }
-  70%  { opacity: 0.9; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(4px); }
+  0%   { opacity: 0; transform: translateY(-6px); }
+  40%  { opacity: 0.85; transform: translateY(0); }
+  70%  { opacity: 0.85; transform: translateY(0); }
+  100% { opacity: 0; transform: translateY(6px); }
 }
 
 .s1-envelope {
@@ -83,11 +97,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
-  animation: envRise 1s cubic-bezier(0.22,1,0.36,1) 0.3s forwards;
+  animation: envRise 1.4s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+  opacity: 0;
 }
 @keyframes envRise {
-  0%   { transform: translateX(-50%) translateY(40px); opacity: 0; }
-  100% { transform: translateX(-50%) translateY(0px);  opacity: 1; }
+  0%   { transform: translateX(-50%) translateY(100%); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0);    opacity: 1; }
 }
 
 .env-img {

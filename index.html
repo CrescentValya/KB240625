@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feliz Cumpleaños, Kylar</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Shantell+Sans:wght@300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+
+  <div class="stage active" id="s1">
+    <div class="s1-text">
+      <h1 class="main-title">Today is a <span class="accent">special</span> day</h1>
+      <p class="subtitle">something is peeking for you</p>
+    </div>
+    <div class="s1-envelope" id="s1-click">
+      <img src="envelope-closed.png" alt="envelope" class="env-img" onerror="this.style.background='#18372C'; this.style.width='400px'; this.style.height='300px'; this.alt='IMAGE NOT FOUND'"/>
+    </div>
+  </div>
+
+  <div class="stage" id="s2">
+    <button class="back-arrow" id="back-s1" aria-label="Go back">❮</button>
+    <div class="s2-text">
+      <h1 class="main-title main-title--sm">Today is a <span class="accent">special</span> day</h1>
+    </div>
+    <div class="s2-envelope" id="s2-click">
+      <div class="card-peek-wrap">
+        <div class="card-peek">
+          <p class="peek-to">To Kylar</p>
+          <p class="peek-hint">click to continue</p>
+        </div>
+      </div>
+      <img src="envelope-open.png" alt="envelope open" class="env-img env-open"/>
+    </div>
+  </div>
+
+  <div class="stage" id="s3">
+    <button class="back-arrow" id="back-s2" aria-label="Go back">❮</button>
+    <div class="card-portrait" id="s3-click">
+      <img src="Robin.jpg" alt="Robin the dog" class="robin-img"/>
+      <h2 class="hbd-title">Happy Birthday<br/>Kylar</h2>
+      <p class="card-click-hint">Click here</p>
+    </div>
+  </div>
+
+  <div class="stage" id="s4">
+    <button class="back-arrow" id="back-s3" aria-label="Go back">❮</button>
+    <button class="for-you-pill" id="play-btn" aria-label="Play song">For you
+      <span class="bars-icon">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+    <div class="curly-arrow top-right" id="arrow-top">
+      <svg viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="cp1" d="M120 90 C100 80 60 60 50 40 C40 20 55 8 70 12 C85 16 80 35 65 32 C50 29 45 15 55 8" stroke="#F0EFCF" stroke-width="2.2" stroke-linecap="round" fill="none"/>
+        <path id="cp1h" d="M48 16 C48 16 55 7 55 8 C55 9 62 14 62 14" stroke="#F0EFCF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+      </svg>
+    </div>
+    <div class="card-portrait card-portrait--song" id="s4-click">
+      <p class="song-greeting">Hi handsome!</p>
+      <p class="song-body">Before you read, hit play. The song is part of the experience, not mandatory, but trust me on this one. I hope you enjoy it :)</p>
+    </div>
+    <audio id="audio" src="song.mp3" preload="auto"></audio>
+  </div>
+
+  <div class="stage" id="s5">
+    <button class="back-arrow" id="back-s4" aria-label="Go back">❮</button>
+    <button class="for-you-pill" id="play-btn-2" aria-label="Play song">For you
+      <span class="bars-icon">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+    <div class="card-portrait card-portrait--letter" id="s5-card">
+      <div class="letter-content">
+        <p class="letter-greeting">Feliz cumpleaños, Kylar.</p>
+
+        <p class="letter-body"><span class="c">T</span>here are people who walk into your life and leave it a little brighter just by being in it. You are one of those people. On your birthday, I want you to know how much light you carry with you without even trying. Your laugh, your warmth, the quiet way you make ordinary moments feel worth r<span class="c">e</span>membering, none of it is small.</p>
+
+        <p class="letter-body">I hope this year brings you everything your heart has been holding onto quietly. I hope it is full of moments that feel like <span class="c">a</span>rriving somewhere you truly belong. May every dream you have whispered to yourself find its way to you. You deserve the kind of happiness that sneaks up on you and stays.</p>
+
+        <p class="letter-body">The universe knows your na<span class="c">m</span>e, Kylar. I like to think it is already writing down your wishes before you even finish making them. You deserve the world, and so much more than you probably allow yourself t<span class="c">o</span> imagine.</p>
+
+        <p class="letter-body">So here is my birthday wish for you: may this year carry you somewhere wonderful. May it be full of open roads, quiet joys, and all the in-between moments that end up becoming your favorite memories. <span class="c">K</span>eep dreaming big, you deserve every bit of it. And I will be just a little selfish and borrow a bit of your birthday magic to wish that next <span class="c">y</span>ear, I get to give you something in person. You deserve that. More than you al<span class="c">l</span>ow yourself to believe. More than you <span class="c">a</span>re probably even aware of.</p>
+
+        <p class="letter-sign">With lots of love,<br/>Valentina</p>
+        <p class="letter-ps">P.S. I really mean it. T<span class="c">r</span>uly.</p>
+        <p class="letter-secret"><em>Some things are only seen by those who <strong>look twice.</strong></em></p>
+      </div>
+    </div>
+    <div class="side-nudge" id="side-nudge">
+      <p class="nudge-text">Once you finish you can click once more</p>
+      <svg class="curly-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path id="np" d="M80 10 C70 30 40 40 30 55 C20 68 30 82 20 85" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path id="nph" d="M12 78 C12 78 20 86 20 85 C20 84 28 80 28 80" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+      </svg>
+      <button class="nudge-btn" id="go-to-back">click once more</button>
+    </div>
+  </div>
+
+  <div class="stage" id="s6">
+    <button class="back-arrow" id="back-s5" aria-label="Go back">❮</button>
+    <button class="for-you-pill" id="play-btn-3" aria-label="Play song">For you
+      <span class="bars-icon">
+        <span></span><span></span><span></span><span></span>
+      </span>
+    </button>
+    <div class="card-portrait card-portrait--back">
+      <h2 class="back-title">Some extras, just because</h2>
+
+      <div class="back-section">
+        <p class="back-label">I made you a b-day playlist</p>
+        <a href="https://music.youtube.com/playlist?list=PLXiSsuL7DuWCGf82XqCMnhs7s8LUspk4P&si=7iiU1jxH5nQTuERi" target="_blank" class="back-btn">Take me there</a>
+      </div>
+
+      <div class="back-section">
+        <p class="back-label">More about the song playing. In case you were curious</p>
+        <a href="https://www.letras.com/josean-log/chachacha/english.html" target="_blank" class="back-btn">Take me there</a>
+      </div>
+
+      <img src="Flowers.jpg" alt="honeysuckle bouquet" class="flowers-img"/>
+
+      <p class="honeysuckle-text">Honeysuckle is one of the birth flowers of June, and it carries a special meaning for those born in the early days of summer. It represents true happiness, romantic love, good fortune, and sweetness towards one another. A symbol of new life, enduring bonds, and the vitality that comes with the summer solstice.</p>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -11,6 +11,20 @@
 </head>
 <body>
 
+  <!-- FOR YOU PILL (global, hidden until stage 4) -->
+  <button class="for-you-pill hidden" id="for-you-global"><span class="pill-text">▶ For you</span>
+    <span class="bars-icon">
+      <span></span><span></span><span></span><span></span>
+    </span>
+  </button>
+  <!-- Volume slider -->
+  <div class="volume-wrap" id="volume-wrap">
+    <span>🔈</span>
+    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="50"/>
+    <span>🔊</span>
+  </div>
+
+  <!-- STAGE 1 -->
   <div class="stage active" id="s1">
     <div class="s1-text">
       <h1 class="main-title">Today is a <span class="accent">special</span> day</h1>
@@ -21,12 +35,13 @@
       </div>
     </div>
     <div class="s1-envelope" id="s1-click">
-      <img src="envelope-closed.png" alt="envelope" class="env-img" onerror="this.style.background='#18372C'; this.style.width='400px'; this.style.height='300px'; this.alt='IMAGE NOT FOUND'"/>
+      <img src="envelope-closed.png" alt="envelope" class="env-img"/>
     </div>
   </div>
 
+  <!-- STAGE 2 -->
   <div class="stage" id="s2">
-    <button class="back-arrow" id="back-s1" aria-label="Go back">❮</button>
+    <button class="back-arrow" id="back-s1">&#8592;</button>
     <div class="s2-text">
       <h1 class="main-title main-title--sm">Today is a <span class="accent">special</span> day</h1>
     </div>
@@ -41,26 +56,23 @@
     </div>
   </div>
 
+  <!-- STAGE 3 -->
   <div class="stage" id="s3">
-    <button class="back-arrow" id="back-s2" aria-label="Go back">❮</button>
+    <button class="back-arrow" id="back-s2">&#8592;</button>
     <div class="card-portrait" id="s3-click">
-      <img src="Robin.jpg" alt="Robin the dog" class="robin-img"/>
+      <img src="Robin.png" alt="Robin" class="robin-img"/>
       <h2 class="hbd-title">Happy Birthday<br/>Kylar</h2>
       <p class="card-click-hint">Click here</p>
     </div>
   </div>
 
+  <!-- STAGE 4 -->
   <div class="stage" id="s4">
-    <button class="back-arrow" id="back-s3" aria-label="Go back">❮</button>
-    <button class="for-you-pill" id="play-btn" aria-label="Play song">For you
-      <span class="bars-icon">
-        <span></span><span></span><span></span><span></span>
-      </span>
-    </button>
-    <div class="curly-arrow top-right" id="arrow-top">
-      <svg viewBox="0 0 130 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="cp1" d="M120 90 C100 80 60 60 50 40 C40 20 55 8 70 12 C85 16 80 35 65 32 C50 29 45 15 55 8" stroke="#F0EFCF" stroke-width="2.2" stroke-linecap="round" fill="none"/>
-        <path id="cp1h" d="M48 16 C48 16 55 7 55 8 C55 9 62 14 62 14" stroke="#F0EFCF" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+    <button class="back-arrow" id="back-s3">&#8592;</button>
+    <div class="curly-arrow-wrap" id="arrow-top">
+      <svg class="curly-svg-top" viewBox="0 0 120 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M110 85 C90 75 55 55 45 35 C35 15 50 5 63 9 C76 13 72 30 58 28 C44 26 40 13 50 6" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M43 13 C43 13 50 5 50 6 C50 7 57 11 57 11" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
       </svg>
     </div>
     <div class="card-portrait card-portrait--song" id="s4-click">
@@ -70,14 +82,10 @@
     <audio id="audio" src="song.mp3" preload="auto"></audio>
   </div>
 
+  <!-- STAGE 5 -->
   <div class="stage" id="s5">
-    <button class="back-arrow" id="back-s4" aria-label="Go back">❮</button>
-    <button class="for-you-pill" id="play-btn-2" aria-label="Play song">For you
-      <span class="bars-icon">
-        <span></span><span></span><span></span><span></span>
-      </span>
-    </button>
-    <div class="card-portrait card-portrait--letter" id="s5-card">
+    <button class="back-arrow" id="back-s4">&#8592;</button>
+    <div class="card-portrait card-portrait--letter">
       <div class="letter-content">
         <p class="letter-greeting">Feliz cumpleaños, Kylar.</p>
 
@@ -91,41 +99,32 @@
 
         <p class="letter-sign">With lots of love,<br/>Valentina</p>
         <p class="letter-ps">P.S. I really mean it. T<span class="c">r</span>uly.</p>
-        <p class="letter-secret"><em>Some things are only seen by those who <strong>look twice.</strong></em></p>
+        <p class="letter-secret">Some things are only seen by those who <strong>look twice.</strong></p>
       </div>
     </div>
     <div class="side-nudge" id="side-nudge">
       <p class="nudge-text">Once you finish you can click once more</p>
-      <svg class="curly-svg" viewBox="0 0 90 90" fill="none" xmlns="http://www.w3.org/2000/svg">
-        <path id="np" d="M80 10 C70 30 40 40 30 55 C20 68 30 82 20 85" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
-        <path id="nph" d="M12 78 C12 78 20 86 20 85 C20 84 28 80 28 80" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+      <svg class="curly-svg-side" viewBox="0 0 60 90" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M50 8 C50 8 15 25 18 55 C21 78 45 82 42 88" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
+        <path d="M33 82 C33 82 41 89 42 88 C43 87 44 79 44 79" stroke="#F0EFCF" stroke-width="2" stroke-linecap="round" fill="none"/>
       </svg>
-      <button class="nudge-btn" id="go-to-back">click once more</button>
     </div>
   </div>
 
+  <!-- STAGE 6 -->
   <div class="stage" id="s6">
-    <button class="back-arrow" id="back-s5" aria-label="Go back">❮</button>
-    <button class="for-you-pill" id="play-btn-3" aria-label="Play song">For you
-      <span class="bars-icon">
-        <span></span><span></span><span></span><span></span>
-      </span>
-    </button>
+    <button class="back-arrow" id="back-s5">&#8592;</button>
     <div class="card-portrait card-portrait--back">
       <h2 class="back-title">Some extras, just because</h2>
-
       <div class="back-section">
         <p class="back-label">I made you a b-day playlist</p>
         <a href="https://music.youtube.com/playlist?list=PLXiSsuL7DuWCGf82XqCMnhs7s8LUspk4P&si=7iiU1jxH5nQTuERi" target="_blank" class="back-btn">Take me there</a>
       </div>
-
       <div class="back-section">
         <p class="back-label">More about the song playing. In case you were curious</p>
         <a href="https://www.letras.com/josean-log/chachacha/english.html" target="_blank" class="back-btn">Take me there</a>
       </div>
-
-      <img src="Flowers.jpg" alt="honeysuckle bouquet" class="flowers-img"/>
-
+      <img src="Flowers.png" alt="flowers" class="flowers-img"/>
       <p class="honeysuckle-text">Honeysuckle is one of the birth flowers of June, and it carries a special meaning for those born in the early days of summer. It represents true happiness, romantic love, good fortune, and sweetness towards one another. A symbol of new life, enduring bonds, and the vitality that comes with the summer solstice.</p>
     </div>
   </div>

@@ -1,63 +1,84 @@
 document.addEventListener("DOMContentLoaded", () => {
-  const stages = document.querySelectorAll('.stage');
-  const audio = document.getElementById('audio');
-  
-  // Grab all the "For you" play buttons
-  const playBtns = [
-    document.getElementById('play-btn'), 
-    document.getElementById('play-btn-2'), 
-    document.getElementById('play-btn-3')
-  ];
 
-  // Helper function to hide all stages and show the one we want
-  function goToStage(stageIndex) {
-    stages.forEach((stage, idx) => {
-      if (idx === stageIndex) {
-        stage.classList.add('active');
-      } else {
-        stage.classList.remove('active');
-      }
+  // === STAGE MANAGER ===
+  const stages = document.querySelectorAll('.stage');
+  let pillRevealed = false;
+
+  function goToStage(index) {
+    stages.forEach((s, i) => {
+      i === index ? s.classList.add('active') : s.classList.remove('active');
     });
+    // Reveal "For you" pill once stage 4 is reached, keep it forever after
+    if (index >= 3 && !pillRevealed) {
+      pillRevealed = true;
+      document.getElementById('for-you-global').classList.remove('hidden');
+      document.querySelector('.volume-wrap').classList.add('visible');
+    }
+    // Re-show pill on stages 4+ even if navigating back then forward
+    if (index >= 3) {
+      document.getElementById('for-you-global').classList.remove('hidden');
+      document.querySelector('.volume-wrap').classList.add('visible');
+    }
   }
 
-  // --- FORWARD CLICKS ---
-  // Stage 1 (Closed Env) -> Stage 2 (Open Env)
-  document.getElementById('s1-click')?.addEventListener('click', () => goToStage(1));
-  
-  // Stage 2 (Open Env) -> Stage 3 (Robin Card)
-  document.getElementById('s2-click')?.addEventListener('click', () => goToStage(2));
-  
-  // Stage 3 (Robin Card) -> Stage 4 (Song Prompt)
-  document.getElementById('s3-click')?.addEventListener('click', () => goToStage(3));
-  
-  // Stage 4 (Song Prompt) -> Stage 5 (Letter)
-  document.getElementById('s4-click')?.addEventListener('click', () => goToStage(4));
-  
-  // Stage 5 Side Nudge -> Stage 6 (Back of Card)
-  document.getElementById('go-to-back')?.addEventListener('click', () => goToStage(5));
+  // === NAVIGATION ===
+  document.getElementById('s1-click').addEventListener('click', () => goToStage(1));
+  document.getElementById('s2-click').addEventListener('click', () => goToStage(2));
+  document.getElementById('s3-click').addEventListener('click', () => goToStage(3));
+  document.getElementById('s4-click').addEventListener('click', () => {
+    goToStage(4);
+    // Auto start music when entering letter stage
+    if (!isPlaying) toggleAudio();
+  });
 
-  // --- BACK CLICKS (The little arrow) ---
-  document.getElementById('back-s1')?.addEventListener('click', () => goToStage(0));
-  document.getElementById('back-s2')?.addEventListener('click', () => goToStage(1));
-  document.getElementById('back-s3')?.addEventListener('click', () => goToStage(2));
-  document.getElementById('back-s4')?.addEventListener('click', () => goToStage(3));
-  document.getElementById('back-s5')?.addEventListener('click', () => goToStage(4));
+  // Side nudge click goes to stage 6
+  document.getElementById('side-nudge').addEventListener('click', () => goToStage(5));
+  // Make it clickable after animation
+  setTimeout(() => {
+    document.getElementById('side-nudge').classList.add('clickable');
+  }, 10000);
 
-  // --- AUDIO PLAYER LOGIC ---
+  // Back arrows
+  document.getElementById('back-s1').addEventListener('click', () => goToStage(0));
+  document.getElementById('back-s2').addEventListener('click', () => goToStage(1));
+  document.getElementById('back-s3').addEventListener('click', () => goToStage(2));
+  document.getElementById('back-s4').addEventListener('click', () => goToStage(3));
+  document.getElementById('back-s5').addEventListener('click', () => goToStage(4));
+
+  // === AUDIO ===
+  const audio = document.getElementById('audio');
+  const pill = document.getElementById('for-you-global');
+  const volumeSlider = document.getElementById('volume-slider');
   let isPlaying = false;
+
+  // Default volume at 50%
+  audio.volume = 0.5;
+  if (volumeSlider) volumeSlider.value = 50;
+
   function toggleAudio() {
     if (isPlaying) {
       audio.pause();
-      playBtns.forEach(btn => btn?.classList.remove('playing'));
+      pill.classList.remove('playing');
+      // Update icon back to play
+      pill.childNodes[0].textContent = '▶ For you';
     } else {
-      audio.play().catch(e => console.log("Audio play blocked by browser", e));
-      playBtns.forEach(btn => btn?.classList.add('playing'));
+      audio.play().catch(e => console.log("Audio blocked:", e));
+      pill.classList.add('playing');
     }
     isPlaying = !isPlaying;
   }
 
-  // Attach the audio logic to all the play buttons
-  playBtns.forEach(btn => {
-    btn?.addEventListener('click', toggleAudio);
+  pill.addEventListener('click', toggleAudio);
+
+  audio.addEventListener('ended', () => {
+    isPlaying = false;
+    pill.classList.remove('playing');
   });
+
+  // Volume control
+  if (volumeSlider) {
+    volumeSlider.addEventListener('input', () => {
+      audio.volume = volumeSlider.value / 100;
+    });
+  }
 });

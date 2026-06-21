@@ -11,7 +11,13 @@
 
 /* === RESET === */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm); }
+html, body { 
+  width: 100%; height: 100%; 
+  overflow: hidden; 
+  background: var(--palm);
+  margin: 0;
+  padding: 0;
+}
 
 /* === STAGES === */
 .stage {
@@ -79,16 +85,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .s1-arr {
   font-size: 2rem;
   color: var(--beige);
-  opacity: 0;
-  animation: arrowPulse 1.8s ease-in-out infinite;
+  opacity: 0.3;
+  animation: arrowBreathe 2s ease-in-out infinite;
 }
 .s1-arr:nth-child(1) { animation-delay: 0s; }
-.s1-arr:nth-child(3) { animation-delay: 0.25s; }
-@keyframes arrowPulse {
-  0%   { opacity: 0; transform: translateY(-6px); }
-  40%  { opacity: 0.85; transform: translateY(0); }
-  70%  { opacity: 0.85; transform: translateY(0); }
-  100% { opacity: 0; transform: translateY(6px); }
+.s1-arr:nth-child(3) { animation-delay: 0.3s; }
+@keyframes arrowBreathe {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
 }
 
 .s1-envelope {
@@ -97,6 +102,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   left: 50%;
   transform: translateX(-50%);
   cursor: pointer;
+  line-height: 0;
+  font-size: 0;
   animation: envRise 1.4s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
   opacity: 0;
 }
@@ -108,6 +115,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .env-img {
   width: clamp(260px, 42vw, 560px);
   display: block;
+  vertical-align: bottom;
+  margin-bottom: 0;
+  padding-bottom: 0;
 }
 
 /* === STAGE 2 === */

@@ -1,37 +1,430 @@
-/* ===== Global music icon and arrow ===== */
-#music-icon {
+/* === TOKENS === */
+:root {
+  --palm:      #909E62;
+  --beige:     #F0EFCF;
+  --evergreen: #18372C;
+  --garnet:    #710707;
+  --black:     #131919;
+  --fp: 'Playfair Display', serif;
+  --fs: 'Shantell Sans', cursive;
+}
+
+/* === RESET === */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm); }
+
+/* === STAGES === */
+.stage {
+  position: fixed; inset: 0;
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.5s ease;
+}
+.stage.active { opacity: 1; pointer-events: all; }
+
+/* === STAGE 1 === */
+#s1 { flex-direction: column; align-items: center; justify-content: flex-start; }
+
+.s1-text {
+  position: absolute;
+  bottom: clamp(340px, 50vh, 520px);
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.main-title {
+  font-family: var(--fp);
+  font-size: 96px;
+  font-weight: 400;
+  color: var(--beige);
+  line-height: 1.1;
+  opacity: 0.9;
+}
+.main-title--sm { font-size: 64px; }
+.main-title .accent { color: var(--garnet); }
+
+.subtitle-row {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+.subtitle {
+  font-family: var(--fp);
+  font-size: 32px;
+  font-weight: 400;
+  color: var(--beige);
+  opacity: 0.8;
+  letter-spacing: 0.04em;
+}
+.s1-arr {
+  font-size: 2rem;
+  color: var(--beige);
+  opacity: 0.3;
+  animation: arrowBreathe 3s ease-in-out infinite;
+}
+.s1-arr:nth-child(1) { animation-delay: 0s; }
+.s1-arr:nth-child(3) { animation-delay: 0.5s; }
+@keyframes arrowBreathe {
+  0%   { opacity: 0.3; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.3; }
+}
+
+.s1-envelope {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  line-height: 0;
+  opacity: 0;
+  animation: envRise 1.4s cubic-bezier(0.22,1,0.36,1) 0.2s forwards;
+}
+@keyframes envRise {
+  0%   { transform: translateX(-50%) translateY(100%); opacity: 0; }
+  100% { transform: translateX(-50%) translateY(0);    opacity: 1; }
+}
+.env-img {
+  width: clamp(260px, 42vw, 560px);
+  display: block;
+  vertical-align: bottom;
+}
+
+/* === STAGE 2 === */
+#s2 { flex-direction: column; align-items: center; justify-content: flex-start; }
+
+.s2-text {
+  position: absolute;
+  bottom: clamp(340px, 50vh, 520px); /* Changed to match stage 1 closeness */
+  width: 100%;
+  text-align: center;
+}
+.s2-envelope {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  cursor: pointer;
+  line-height: 0;
+}
+.env-open { width: clamp(280px, 40vw, 540px); display: block; vertical-align: bottom; }
+
+/* === CARD PORTRAIT === */
+.card-portrait {
+  background: var(--beige);
+  border-radius: 4px;
+  width: 559px;
+  height: 725px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  position: relative;
+  box-shadow: 0 12px 48px rgba(0,0,0,0.25);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+/* Stage 3 */
+.card-portrait.clickable { cursor: pointer; }
+.robin-img {
+  width: 100%; /* Let the new cropped image fill the space better */
+  max-width: 480px; 
+  margin-top: 16px;
+  display: block;
+}
+.hbd-title {
+  font-family: var(--fp);
+  font-size: 64px;
+  color: var(--garnet);
+  text-align: center;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-top: 12px;
+  padding: 0 24px;
+}
+.card-click-hint {
+  font-family: var(--fs);
+  font-size: 16px;
+  color: var(--evergreen);
+  opacity: 0.7;
+  position: absolute;
+  bottom: 16px;
+  right: 20px;
+}
+
+/* Stage 4 song */
+.card-portrait--song {
+  justify-content: center;
+  padding: 48px;
+  cursor: pointer;
+}
+.song-text-wrap {
+  max-width: 340px; /* Makes the text box a narrower square, less spread out */
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+.song-greeting {
+  font-family: var(--fp);
+  font-size: 24px;
+  color: var(--evergreen); /* Changed to the green requested */
+  text-align: center;
+  font-weight: 600;
+}
+.song-body {
+  font-family: var(--fp);
+  font-size: 1rem;
+  color: var(--evergreen); /* Changed to the green requested */
+  text-align: center;
+  line-height: 1.8;
+  opacity: 0.9;
+}
+
+/* Stage 5 letter */
+.card-portrait--letter {
+  cursor: default;
+  overflow-y: auto;
+  padding: 32px 40px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  height: 725px;
+}
+/* Hide scrollbar for cleaner look but keep scrolling functional if needed */
+.card-portrait--letter::-webkit-scrollbar { display: none; }
+.card-portrait--letter { -ms-overflow-style: none; scrollbar-width: none; }
+
+.letter-content { width: 100%; }
+
+.letter-greeting {
+  font-family: var(--fs);
+  font-size: 15px; /* Forced to 15px */
+  color: var(--black);
+  margin-bottom: 16px;
+  text-align: left;
+}
+.letter-body {
+  font-family: var(--fs);
+  font-size: 15px; /* Forced to 15px */
+  color: var(--black);
+  line-height: 1.85;
+  margin-bottom: 14px;
+  text-align: left;
+}
+.c { color: var(--garnet); font-weight: 700; }
+
+.letter-sign {
+  font-family: var(--fs);
+  font-size: 15px;
+  color: var(--black);
+  margin-top: 20px;
+  line-height: 1.7;
+  text-align: left;
+}
+.letter-ps {
+  font-family: var(--fs);
+  font-size: 14px;
+  color: var(--black);
+  margin-top: 6px;
+  text-align: left;
+}
+.letter-secret {
+  font-family: var(--fs);
+  font-size: 14px;
+  color: var(--garnet);
+  text-align: center;
+  margin-top: 24px;
+  font-style: normal;
+}
+.letter-secret strong { font-weight: 700; }
+
+/* Stage 6 back (Extras) */
+.card-portrait--back {
+  cursor: default;
+  padding: 32px 44px 24px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 800px;
+  width: 559px;
+}
+.back-title {
+  font-family: var(--fp);
+  font-size: 32px; /* Made bigger */
+  color: var(--evergreen);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 24px;
+}
+.back-links-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+.back-section {
+  display: flex; flex-direction: column; align-items: center; gap: 6px;
+  width: 100%; text-align: center;
+}
+.back-label {
+  font-family: var(--fs);
+  font-size: 16px;
+  color: var(--black);
+  opacity: 0.85;
+}
+.back-btn {
+  display: inline-block;
+  background: var(--garnet);
+  color: var(--beige);
+  font-family: var(--fp);
+  font-size: 0.9rem;
+  padding: 9px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.2s, transform 0.15s;
+}
+.back-btn:hover { background: #8a0909; transform: translateY(-2px); }
+
+.flowers-img {
+  width: 90%; /* Made way bigger */
+  display: block;
+  flex-shrink: 0;
+  margin: auto 0; /* Pushes it to center vertical space */
+}
+
+.honeysuckle-wrap {
+  margin-top: auto; /* Forces this to sit exactly at the bottom */
+  padding-top: 10px;
+}
+.honeysuckle-text {
+  font-family: var(--fp);
+  font-size: 0.85rem; /* Slightly bigger */
+  color: var(--evergreen);
+  text-align: center;
+  line-height: 1.6;
+}
+
+/* === BACK ARROW === */
+.back-arrow {
   position: fixed;
   top: 24px;
-  right: 180px; /* sits left of the pill */
-  z-index: 210;
-  background: var(--beige);
+  left: 24px;
+  background: transparent;
   border: none;
-  border-radius: 999px;
-  padding: 8px 10px;
-  font-size: 18px;
+  color: var(--beige);
+  font-size: 2rem;
   cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+  z-index: 100;
+  opacity: 0.6;
+  transition: opacity 0.2s;
+  line-height: 1;
+  padding: 4px 8px;
 }
-#music-icon:hover { background: #e0dfc0; }
+.back-arrow:hover { opacity: 1; }
 
-#arrow-up {
+/* === GLOBAL CONTROLS (Top Right) === */
+.global-controls {
   position: fixed;
-  top: 6px; /* slightly above the pill */
-  right: 240px; /* adjust to sit above the player button */
-  width: 48px;
-  z-index: 205;
+  top: 20px;
+  right: 24px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  z-index: 200;
   opacity: 1;
+  transition: opacity 0.4s;
+}
+.global-controls.hidden {
+  opacity: 0;
   pointer-events: none;
 }
 
-/* ===== Volume slider pill style (simple bar) ===== */
+/* For You Pill */
+.for-you-pill {
+  background: var(--beige);
+  border: none;
+  border-radius: 30px;
+  font-family: var(--fp);
+  font-size: 20px;
+  color: var(--black);
+  padding: 10px 22px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: background 0.2s;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.for-you-pill:hover { background: #e0dfc0; }
+.for-you-pill.playing { background: var(--evergreen); color: var(--beige); }
+
+.bars-icon { display: flex; align-items: flex-end; gap: 2px; height: 16px; }
+.bars-icon span { display: block; width: 3px; background: currentColor; border-radius: 2px; }
+.bars-icon span:nth-child(1) { height: 6px; }
+.bars-icon span:nth-child(2) { height: 11px; }
+.bars-icon span:nth-child(3) { height: 16px; }
+.bars-icon span:nth-child(4) { height: 9px; }
+.for-you-pill.playing .bars-icon span { animation: barBounce 0.8s ease-in-out infinite alternate; }
+.for-you-pill.playing .bars-icon span:nth-child(1) { animation-delay: 0s; }
+.for-you-pill.playing .bars-icon span:nth-child(2) { animation-delay: 0.15s; }
+.for-you-pill.playing .bars-icon span:nth-child(3) { animation-delay: 0.3s; }
+.for-you-pill.playing .bars-icon span:nth-child(4) { animation-delay: 0.45s; }
+
+/* Volume Wrapper & Slider */
+.vol-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.vol-toggle-btn {
+  background: var(--beige);
+  border: none;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  transition: background 0.2s;
+}
+.vol-toggle-btn:hover { background: #e0dfc0; }
+.music-icon {
+  width: 20px;
+  height: 20px;
+  color: var(--black);
+}
+
+.slider-bg {
+  background: var(--beige);
+  border-radius: 30px;
+  padding: 0 14px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: width 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+}
+.slider-bg.open {
+  width: 100px;
+  opacity: 1;
+  padding: 0 14px;
+}
+
 .volume-slider {
   -webkit-appearance: none;
-  appearance: none;
-  width: 120px;
-  height: 10px;
-  border-radius: 999px;
-  background: rgba(24,55,44,0.12); /* subtle background */
+  width: 100%;
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(19, 25, 25, 0.2);
   outline: none;
   cursor: pointer;
 }
@@ -39,83 +432,70 @@
   -webkit-appearance: none;
   width: 14px; height: 14px;
   border-radius: 50%;
-  background: var(--beige);
-  box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+  background: var(--evergreen);
+  cursor: pointer;
 }
 
-/* ===== Stage 2: bring text closer to envelope ===== */
-#s2 .s2-text {
-  top: clamp(6px, 2vh, 18px); /* move text closer to top so it sits nearer the envelope */
-  margin-bottom: 8px;
+/* === MANUAL ARROWS === */
+.curly-arrow-wrap {
+  position: fixed;
+  top: 75px; /* Sits just underneath the play controls */
+  right: 120px; /* Points roughly at the play button */
+  pointer-events: none;
+  opacity: 0;
+  animation: fadeIn 0.5s ease 0.3s forwards;
+}
+.manual-arrow-up {
+  width: 70px;
+  height: auto;
 }
 
-/* ===== Stage 3: larger Robin image ===== */
-#s3 .robin-img {
-  width: 94%;
-  max-width: 520px; /* allow larger image */
-  margin-top: 8px;
-}
-
-/* ===== Stage 4: greeting block constraints and color ===== */
-.card-portrait--song .song-greeting {
-  font-family: var(--fp);
-  font-size: 24px;
-  color: #18372C; /* evergreen color */
-  text-align: center;
-  max-width: 420px; /* keep the text in a square-ish block */
-  width: min(86%, 420px);
-  margin: 0 auto;
-  line-height: 1.05;
-}
-
-/* tighten spacing for the song body */
-.card-portrait--song .song-body {
-  max-width: 420px;
-  width: min(86%, 420px);
-  margin: 0 auto;
-  text-align: center;
-}
-
-/* ===== Stage 5: letter font size and consistent card height ===== */
-.card-portrait--letter .letter-body,
-.card-portrait--letter .letter-greeting,
-.card-portrait--letter .letter-sign,
-.card-portrait--letter .letter-ps {
-  font-size: 15px; /* set to 15 as requested */
-}
-
-/* ensure the letter card keeps same dimensions as other card-portrait variants */
-.card-portrait {
-  width: 559px;
-  height: 725px;
-}
-
-/* if mobile, keep min-height consistent */
-@media (max-width:700px) {
-  .card-portrait { width: 92vw; min-height: 80vh; height: auto; }
-  .card-portrait--letter { min-height: 80vh; }
-}
-
-/* ===== Stage 7: larger back card and flowers ===== */
-.card-portrait--back-large {
-  width: 680px;
-  height: 820px;
-  padding: 28px 44px 20px;
-}
-.back-title--large { font-size: 28px; }
-.flowers-img--large { width: 92%; max-width: 620px; margin: 12px auto; display:block; }
-.honeysuckle-text--large { font-size: 0.9rem; margin-top: auto; }
-
-/* pin bottom text to bottom of the card */
-.card-portrait--back-large {
+/* === SIDE NUDGE STAGE 5 === */
+.side-nudge {
+  position: fixed;
+  right: 40px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  pointer-events: none;
+  text-align: center;
+  cursor: pointer;
 }
-.honeysuckle-text--large {
-  margin-top: 12px;
-  margin-bottom: 12px;
-  align-self: stretch;
-  margin-left: 12px;
-  margin-right: 12px;
+.side-nudge.clickable { pointer-events: all; }
+/* Animation for the 15-second delay */
+.side-nudge.show-nudge {
+  animation: fadeIn 0.8s ease forwards;
+}
+
+.nudge-text {
+  font-family: var(--fp);
+  font-size: 0.85rem;
+  color: var(--beige);
+  opacity: 0.9;
+  max-width: 130px;
+  line-height: 1.5;
+}
+.manual-arrow-left {
+  width: 60px;
+  height: auto;
+}
+
+@keyframes fadeIn { to { opacity: 1; } }
+
+/* === MOBILE === */
+@media (max-width: 700px) {
+  .main-title { font-size: 52px; }
+  .subtitle { font-size: 20px; }
+  .card-portrait { width: 92vw; height: auto; min-height: 80vh; }
+  .card-portrait--back { width: 92vw; height: auto; min-height: 80vh; }
+  .hbd-title { font-size: 40px; }
+  .side-nudge { right: 6px; }
+  .curly-arrow-wrap { right: 90px; top: 85px; }
+  .for-you-pill { font-size: 16px; padding: 8px 16px; }
+  .vol-toggle-btn { width: 38px; height: 38px; }
+  .slider-bg { height: 38px; }
 }

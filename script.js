@@ -15,8 +15,9 @@ document.addEventListener("DOMContentLoaded", () => {
   
   let isPlaying = false;
   let nudgeTimer = null;
+  let nudgeRevealed = false; // Remembers if the nudge was shown
 
-  // Default volume to 5% as requested
+  // Default volume to 5%
   audio.volume = 0.05;
 
   function goToStage(index) {
@@ -29,16 +30,19 @@ document.addEventListener("DOMContentLoaded", () => {
       globalControls.classList.remove('hidden');
     }
     
-    // Logic for Stage 5 (Letter) - 15 second delay for the nudge
+    // Logic for Stage 5 (Letter) - 7 second delay for the nudge
     if (index === 4) {
-      clearTimeout(nudgeTimer);
-      sideNudge.classList.remove('show-nudge', 'clickable'); // reset if they go back
-      
-      nudgeTimer = setTimeout(() => {
-        sideNudge.classList.add('show-nudge');
-        // Small delay to allow fade-in before making it clickable
-        setTimeout(() => sideNudge.classList.add('clickable'), 800);
-      }, 15000); // 15 seconds
+      if (!nudgeRevealed) {
+        clearTimeout(nudgeTimer);
+        nudgeTimer = setTimeout(() => {
+          nudgeRevealed = true; // Mark as revealed so it stays next time
+          sideNudge.classList.add('show-nudge');
+          setTimeout(() => sideNudge.classList.add('clickable'), 800);
+        }, 7000); // 7 seconds
+      } else {
+        // If they already waited the 7s previously, show it immediately
+        sideNudge.classList.add('show-nudge', 'clickable');
+      }
     }
   }
 
@@ -51,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // Letter card click goes to stage 6 (Extras)
   letterCard.addEventListener('click', () => {
-    // Only go to the next stage if nudge is visible (after 15s)
+    // Only go to the next stage if nudge is visible
     if (sideNudge.classList.contains('clickable')) {
       goToStage(5);
     }

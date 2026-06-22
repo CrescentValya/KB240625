@@ -22,10 +22,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 }
 .stage.active { opacity: 1; pointer-events: all; }
 
-/* === STAGE 1 === */
-#s1 { flex-direction: column; align-items: center; justify-content: flex-start; }
-
-.s1-text {
+/* === STAGE 1 & 2 TEXT POSITIONING === */
+.s1-text, .s2-text {
   position: absolute;
   bottom: clamp(340px, 50vh, 520px);
   width: 100%;
@@ -36,6 +34,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   gap: 12px;
 }
 
+#s1 { flex-direction: column; align-items: center; justify-content: flex-start; }
+
 .main-title {
   font-family: var(--fp);
   font-size: 96px;
@@ -44,7 +44,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   line-height: 1.1;
   opacity: 0.9;
 }
-.main-title--sm { font-size: 64px; }
 .main-title .accent { color: var(--garnet); }
 
 .subtitle-row {
@@ -66,8 +65,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   opacity: 0.3;
   animation: arrowBreathe 3s ease-in-out infinite;
 }
-.s1-arr:nth-child(1) { animation-delay: 0s; }
-.s1-arr:nth-child(3) { animation-delay: 0.5s; }
 @keyframes arrowBreathe {
   0%   { opacity: 0.3; }
   50%  { opacity: 1; }
@@ -97,12 +94,6 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* === STAGE 2 === */
 #s2 { flex-direction: column; align-items: center; justify-content: flex-start; }
 
-.s2-text {
-  position: absolute;
-  bottom: clamp(340px, 50vh, 520px); /* Changed to match stage 1 closeness */
-  width: 100%;
-  text-align: center;
-}
 .s2-envelope {
   position: absolute;
   bottom: 0;
@@ -118,7 +109,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   background: var(--beige);
   border-radius: 4px;
   width: 559px;
-  height: 725px;
+  height: 870px; /* Made taller to fit the entire letter */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -132,19 +123,19 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* Stage 3 */
 .card-portrait.clickable { cursor: pointer; }
 .robin-img {
-  width: 100%; /* Let the new cropped image fill the space better */
+  width: 100%; 
   max-width: 480px; 
   margin-top: 16px;
   display: block;
 }
 .hbd-title {
   font-family: var(--fp);
-  font-size: 64px;
+  font-size: 48px; /* Scaled down */
   color: var(--garnet);
   text-align: center;
-  font-weight: 700;
+  font-weight: 400; /* Removed bold */
   line-height: 1.2;
-  margin-top: 12px;
+  margin-top: 24px;
   padding: 0 24px;
 }
 .card-click-hint {
@@ -161,26 +152,19 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait--song {
   justify-content: center;
   padding: 48px;
-  cursor: pointer;
 }
 .song-text-wrap {
-  max-width: 340px; /* Makes the text box a narrower square, less spread out */
+  max-width: 360px; 
   display: flex;
   flex-direction: column;
   gap: 20px;
 }
-.song-greeting {
-  font-family: var(--fp);
-  font-size: 24px;
-  color: var(--evergreen); /* Changed to the green requested */
-  text-align: center;
-  font-weight: 600;
-}
 .song-body {
   font-family: var(--fp);
-  font-size: 1rem;
-  color: var(--evergreen); /* Changed to the green requested */
+  font-size: 22px; /* Made both sections the same larger size */
+  color: var(--evergreen);
   text-align: center;
+  font-weight: 400; /* Removed bold */
   line-height: 1.8;
   opacity: 0.9;
 }
@@ -189,12 +173,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait--letter {
   cursor: default;
   overflow-y: auto;
-  padding: 32px 40px;
+  padding: 40px 44px;
   align-items: flex-start;
   justify-content: flex-start;
-  height: 725px;
 }
-/* Hide scrollbar for cleaner look but keep scrolling functional if needed */
+/* Hide scrollbar for cleaner look */
 .card-portrait--letter::-webkit-scrollbar { display: none; }
 .card-portrait--letter { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -202,14 +185,14 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 
 .letter-greeting {
   font-family: var(--fs);
-  font-size: 15px; /* Forced to 15px */
+  font-size: 15px; 
   color: var(--black);
   margin-bottom: 16px;
   text-align: left;
 }
 .letter-body {
   font-family: var(--fs);
-  font-size: 15px; /* Forced to 15px */
+  font-size: 15px; 
   color: var(--black);
   line-height: 1.85;
   margin-bottom: 14px;
@@ -237,7 +220,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   font-size: 14px;
   color: var(--garnet);
   text-align: center;
-  margin-top: 24px;
+  margin-top: 32px;
   font-style: normal;
 }
 .letter-secret strong { font-weight: 700; }
@@ -245,16 +228,14 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* Stage 6 back (Extras) */
 .card-portrait--back {
   cursor: default;
-  padding: 32px 44px 24px;
+  padding: 40px 44px 24px;
   align-items: center;
   display: flex;
   flex-direction: column;
-  height: 800px;
-  width: 559px;
 }
 .back-title {
   font-family: var(--fp);
-  font-size: 32px; /* Made bigger */
+  font-size: 32px; 
   color: var(--evergreen);
   font-weight: 600;
   text-align: center;
@@ -290,19 +271,20 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .back-btn:hover { background: #8a0909; transform: translateY(-2px); }
 
 .flowers-img {
-  width: 90%; /* Made way bigger */
+  width: 100%; 
+  transform: scale(1.15); /* Made bigger without moving other layout elements */
   display: block;
   flex-shrink: 0;
-  margin: auto 0; /* Pushes it to center vertical space */
+  margin: auto 0; 
 }
 
 .honeysuckle-wrap {
-  margin-top: auto; /* Forces this to sit exactly at the bottom */
+  margin-top: auto; 
   padding-top: 10px;
 }
 .honeysuckle-text {
   font-family: var(--fp);
-  font-size: 0.85rem; /* Slightly bigger */
+  font-size: 0.85rem; 
   color: var(--evergreen);
   text-align: center;
   line-height: 1.6;
@@ -439,21 +421,21 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* === MANUAL ARROWS === */
 .curly-arrow-wrap {
   position: fixed;
-  top: 75px; /* Sits just underneath the play controls */
-  right: 120px; /* Points roughly at the play button */
+  top: 70px; 
+  right: 175px; /* Moved further left */
   pointer-events: none;
   opacity: 0;
   animation: fadeIn 0.5s ease 0.3s forwards;
 }
 .manual-arrow-up {
-  width: 70px;
+  width: 100px; /* Made bigger */
   height: auto;
 }
 
 /* === SIDE NUDGE STAGE 5 === */
 .side-nudge {
   position: fixed;
-  right: 40px;
+  left: calc(50% + 295px); /* Positions it perfectly right next to the card */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -466,21 +448,21 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   cursor: pointer;
 }
 .side-nudge.clickable { pointer-events: all; }
-/* Animation for the 15-second delay */
+/* Animation for the delay */
 .side-nudge.show-nudge {
   animation: fadeIn 0.8s ease forwards;
 }
 
 .nudge-text {
   font-family: var(--fp);
-  font-size: 0.85rem;
+  font-size: 1.1rem; /* Made bigger */
   color: var(--beige);
   opacity: 0.9;
-  max-width: 130px;
+  max-width: 150px;
   line-height: 1.5;
 }
 .manual-arrow-left {
-  width: 60px;
+  width: 70px;
   height: auto;
 }
 
@@ -491,9 +473,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   .main-title { font-size: 52px; }
   .subtitle { font-size: 20px; }
   .card-portrait { width: 92vw; height: auto; min-height: 80vh; }
-  .card-portrait--back { width: 92vw; height: auto; min-height: 80vh; }
   .hbd-title { font-size: 40px; }
-  .side-nudge { right: 6px; }
+  .side-nudge { left: auto; right: 6px; }
   .curly-arrow-wrap { right: 90px; top: 85px; }
   .for-you-pill { font-size: 16px; padding: 8px 16px; }
   .vol-toggle-btn { width: 38px; height: 38px; }

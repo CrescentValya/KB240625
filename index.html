@@ -17,11 +17,15 @@
     <span class="bars-icon"><span></span><span></span><span></span><span></span></span>
   </button>
 
+  <!-- Music icon (click sets slider to 5% and toggles audio) -->
+  <button id="music-icon" class="music-icon" aria-label="Play music">🔊</button>
+
+  <!-- Arrow pointing up (Arrow-looking-up.png) -->
+  <img src="Arrow-looking-up.png" id="arrow-up" alt="arrow up" />
+
   <!-- Volume slider -->
   <div class="volume-wrap" id="volume-wrap">
-    <span class="volume-icon">🔈</span>
-    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="25"/>
-    <span class="volume-icon">🔊</span>
+    <input type="range" class="volume-slider" id="volume-slider" min="0" max="100" value="5"/>
   </div>
 
   <!-- STAGE 1 -->
@@ -116,6 +120,24 @@
       </div>
       <img src="Flowers.png" alt="flowers" class="flowers-img"/>
       <p class="honeysuckle-text">Honeysuckle is one of the birth flowers of June, and it carries a special meaning for those born in the early days of summer. It represents true happiness, romantic love, good fortune, and sweetness towards one another. A symbol of new life, enduring bonds, and the vitality that comes with the summer solstice.</p>
+    </div>
+  </div>
+
+  <!-- STAGE 7 (final) -->
+  <div class="stage" id="s7">
+    <button class="back-arrow" id="back-s6">&#8592;</button>
+    <div class="card-portrait card-portrait--back card-portrait--back-large" id="s7-content">
+      <h2 class="back-title back-title--large">Some extras, just because</h2>
+      <div class="back-section">
+        <p class="back-label">I made you a b-day playlist</p>
+        <a href="https://music.youtube.com/playlist?list=PLXiSsuL7DuWCGf82XqCMnhs7s8LUspk4P&si=7iiU1jxH5nQTuERi" target="_blank" class="back-btn">Take me there</a>
+      </div>
+      <div class="back-section">
+        <p class="back-label">More about the song playing. In case you were curious</p>
+        <a href="https://www.letras.com/josean-log/chachacha/english.html" target="_blank" class="back-btn">Take me there</a>
+      </div>
+      <img src="Flowers.png" alt="flowers" class="flowers-img flowers-img--large"/>
+      <p class="honeysuckle-text honeysuckle-text--large">Honeysuckle is one of the birth flowers of June, and it carries a special meaning for those born in the early days of summer. It represents true happiness, romantic love, good fortune, and sweetness towards one another. A symbol of new life, enduring bonds, and the vitality that comes with the summer solstice.</p>
     </div>
   </div>
 

@@ -11,13 +11,11 @@
 </head>
 <body>
 
-  <!-- GLOBAL CONTROLS (Play button + Volume) -->
   <div class="global-controls hidden" id="global-controls">
     <button class="for-you-pill" id="for-you-global">
       <span class="pill-label">▶ For you</span>
       <span class="bars-icon"><span></span><span></span><span></span><span></span></span>
     </button>
-    
     <div class="vol-wrapper">
       <button class="vol-toggle-btn" id="vol-toggle-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="music-icon"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
@@ -28,7 +26,6 @@
     </div>
   </div>
 
-  <!-- STAGE 1 -->
   <div class="stage active" id="s1">
     <div class="s1-text">
       <h1 class="main-title">Today is a <span class="accent">special</span> day</h1>
@@ -43,7 +40,6 @@
     </div>
   </div>
 
-  <!-- STAGE 2 -->
   <div class="stage" id="s2">
     <button class="back-arrow" id="back-s1">&#8592;</button>
     <div class="s2-text">
@@ -54,7 +50,6 @@
     </div>
   </div>
 
-  <!-- STAGE 3 -->
   <div class="stage" id="s3">
     <button class="back-arrow" id="back-s2">&#8592;</button>
     <div class="card-portrait clickable" id="s3-click">
@@ -64,15 +59,11 @@
     </div>
   </div>
 
-  <!-- STAGE 4 -->
   <div class="stage" id="s4">
     <button class="back-arrow" id="back-s3">&#8592;</button>
-    
-    <!-- Manual Arrow pointing to the player -->
     <div class="curly-arrow-wrap" id="s4-arrow">
-      <img src="Arrow-looking-up.png" alt="Arrow pointing up" class="manual-arrow-up"/>
+      <img src="Arrow-looking-up.png" alt="Arrow" class="manual-arrow-up"/>
     </div>
-
     <div class="card-portrait card-portrait--song clickable" id="s4-click">
       <div class="song-text-wrap">
         <p class="song-body">Hi handsome!</p>
@@ -83,7 +74,6 @@
     <audio id="audio" src="song.mp3" preload="auto"></audio>
   </div>
 
-  <!-- STAGE 5 (Letter) -->
   <div class="stage" id="s5">
     <button class="back-arrow" id="back-s4">&#8592;</button>
     <div class="card-portrait card-portrait--letter" id="letter-card">
@@ -98,35 +88,29 @@
         <p class="letter-secret">Some things are only seen by those who <strong>look twice.</strong></p>
       </div>
     </div>
-    
-    <!-- Side nudge pointing at the letter card -->
     <div class="side-nudge" id="side-nudge">
       <p class="nudge-text">Once you finish you can click once more</p>
-      <img src="arrow-lookin-left.png" alt="Arrow pointing left" class="manual-arrow-left"/>
+      <img src="arrow-lookin-left.png" alt="Arrow" class="manual-arrow-left"/>
     </div>
   </div>
 
-  <!-- STAGE 6 (Extras) -->
   <div class="stage" id="s6">
     <button class="back-arrow" id="back-s5">&#8592;</button>
     <div class="card-portrait card-portrait--back">
       <h2 class="back-title">Some extras, just because</h2>
-      
       <div class="back-links-container">
         <div class="back-section">
           <p class="back-label">I made you a b-day playlist</p>
           <a href="https://music.youtube.com/playlist?list=PLXiSsuL7DuWCGf82XqCMnhs7s8LUspk4P&si=7iiU1jxH5nQTuERi" target="_blank" class="back-btn">Take me there</a>
         </div>
         <div class="back-section">
-          <p class="back-label">More about the song playing. In case you were curious</p>
+          <p class="back-label">More about the song</p>
           <a href="https://www.letras.com/josean-log/chachacha/english.html" target="_blank" class="back-btn">Take me there</a>
         </div>
       </div>
-
       <img src="Flowers.png" alt="flowers" class="flowers-img"/>
-      
       <div class="honeysuckle-wrap">
-        <p class="honeysuckle-text">Honeysuckle is one of the birth flowers of June, and it carries a special meaning for those born in the early days of summer. It represents true happiness, romantic love, good fortune, and sweetness towards one another. A symbol of new life, enduring bonds, and the vitality that comes with the summer solstice.</p>
+        <p class="honeysuckle-text">Honeysuckle is one of the birth flowers of June, and it carries a special meaning. It represents true happiness, romantic love, and good fortune.</p>
       </div>
     </div>
   </div>

@@ -119,8 +119,9 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait {
   background: var(--beige);
   border-radius: 4px;
-  width: 680px; /* Made considerably wider */
-  height: 750px; /* Reduced the tallness */
+  width: 680px;
+  height: calc(100vh - 60px);
+  max-height: 900px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -184,11 +185,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait--letter {
   cursor: default;
   overflow-y: auto;
-  padding: 40px 48px;
+  padding: 28px 40px;
   align-items: flex-start;
   justify-content: flex-start;
+  height: 100%;
 }
-/* Hide scrollbar for cleaner look */
 .card-portrait--letter::-webkit-scrollbar { display: none; }
 .card-portrait--letter { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -239,24 +240,28 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* Stage 6 back (Extras) */
 .card-portrait--back {
   cursor: default;
-  padding: 40px 44px 24px;
+  padding: 24px 44px 20px;
   align-items: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-between;
+  overflow: hidden;
+  height: 100%;
 }
 .back-title {
   font-family: var(--fp);
-  font-size: 32px; 
+  font-size: 28px;
   color: var(--evergreen);
   font-weight: 600;
   text-align: center;
-  margin-bottom: 24px;
+  flex-shrink: 0;
 }
 .back-links-container {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
   width: 100%;
+  flex-shrink: 0;
 }
 .back-section {
   display: flex; flex-direction: column; align-items: center; gap: 6px;
@@ -264,7 +269,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 }
 .back-label {
   font-family: var(--fs);
-  font-size: 16px;
+  font-size: 15px;
   color: var(--black);
   opacity: 0.85;
 }
@@ -274,7 +279,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   color: var(--beige);
   font-family: var(--fp);
   font-size: 0.9rem;
-  padding: 9px 28px;
+  padding: 8px 26px;
   border-radius: 30px;
   text-decoration: none;
   transition: background 0.2s, transform 0.15s;
@@ -282,23 +287,23 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .back-btn:hover { background: #8a0909; transform: translateY(-2px); }
 
 .flowers-img {
-  width: 100%; 
-  transform: scale(1.15); 
+  width: 65%;
   display: block;
-  flex-shrink: 0;
-  margin: auto 0; 
+  flex-shrink: 1;
+  min-height: 0;
+  object-fit: contain;
 }
 
 .honeysuckle-wrap {
-  margin-top: auto; 
-  padding-top: 10px;
+  flex-shrink: 0;
+  padding-bottom: 4px;
 }
 .honeysuckle-text {
   font-family: var(--fp);
-  font-size: 0.85rem; 
+  font-size: 0.8rem;
   color: var(--evergreen);
   text-align: center;
-  line-height: 1.6;
+  line-height: 1.65;
 }
 
 /* === BACK ARROW === */

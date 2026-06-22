@@ -120,8 +120,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   background: var(--beige);
   border-radius: 4px;
   width: 680px;
-  height: calc(100vh - 80px);
-  max-height: 800px;
+  height: calc(100vh - 40px);
+  max-height: 920px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -185,11 +185,11 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait--letter {
   cursor: default;
   overflow-y: auto;
-  padding: 40px 48px;
+  padding: 22px 36px;
   align-items: flex-start;
   justify-content: flex-start;
+  height: 100%;
 }
-/* Hide scrollbar for cleaner look */
 .card-portrait--letter::-webkit-scrollbar { display: none; }
 .card-portrait--letter { -ms-overflow-style: none; scrollbar-width: none; }
 
@@ -197,17 +197,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 
 .letter-greeting {
   font-family: var(--fs);
-  font-size: 15px; 
+  font-size: 15px;
   color: var(--black);
-  margin-bottom: 16px;
+  margin-bottom: 12px;
   text-align: left;
 }
 .letter-body {
   font-family: var(--fs);
-  font-size: 15px; 
+  font-size: 15px;
   color: var(--black);
-  line-height: 1.85;
-  margin-bottom: 14px;
+  line-height: 1.7;
+  margin-bottom: 10px;
   text-align: left;
 }
 .c { color: var(--garnet); font-weight: 700; }
@@ -216,15 +216,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   font-family: var(--fs);
   font-size: 15px;
   color: var(--black);
-  margin-top: 20px;
-  line-height: 1.7;
+  margin-top: 14px;
+  line-height: 1.6;
   text-align: left;
 }
 .letter-ps {
   font-family: var(--fs);
   font-size: 14px;
   color: var(--black);
-  margin-top: 6px;
+  margin-top: 4px;
   text-align: left;
 }
 .letter-secret {
@@ -232,7 +232,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   font-size: 14px;
   color: var(--garnet);
   text-align: center;
-  margin-top: 32px;
+  margin-top: 16px;
   font-style: normal;
 }
 .letter-secret strong { font-weight: 700; }

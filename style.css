@@ -22,8 +22,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 }
 .stage.active { opacity: 1; pointer-events: all; }
 
-/* === STAGE 1 & 2 TEXT POSITIONING === */
-.s1-text, .s2-text {
+/* === STAGE 1 TEXT === */
+.s1-text {
   position: absolute;
   bottom: clamp(340px, 50vh, 520px);
   width: 100%;
@@ -94,6 +94,17 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* === STAGE 2 === */
 #s2 { flex-direction: column; align-items: center; justify-content: flex-start; }
 
+.s2-text {
+  position: absolute;
+  bottom: clamp(430px, 58vh, 620px); /* Pushed higher so it completely clears the open envelope flap */
+  width: 100%;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
 .s2-envelope {
   position: absolute;
   bottom: 0;
@@ -108,8 +119,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait {
   background: var(--beige);
   border-radius: 4px;
-  width: 559px;
-  height: 870px; /* Made taller to fit the entire letter */
+  width: 680px; /* Made considerably wider */
+  height: 750px; /* Reduced the tallness */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -130,10 +141,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 }
 .hbd-title {
   font-family: var(--fp);
-  font-size: 48px; /* Scaled down */
+  font-size: 48px; 
   color: var(--garnet);
   text-align: center;
-  font-weight: 400; /* Removed bold */
+  font-weight: 400; 
   line-height: 1.2;
   margin-top: 24px;
   padding: 0 24px;
@@ -161,10 +172,10 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 }
 .song-body {
   font-family: var(--fp);
-  font-size: 22px; /* Made both sections the same larger size */
+  font-size: 22px; 
   color: var(--evergreen);
   text-align: center;
-  font-weight: 400; /* Removed bold */
+  font-weight: 400; 
   line-height: 1.8;
   opacity: 0.9;
 }
@@ -173,7 +184,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .card-portrait--letter {
   cursor: default;
   overflow-y: auto;
-  padding: 40px 44px;
+  padding: 40px 48px;
   align-items: flex-start;
   justify-content: flex-start;
 }
@@ -272,7 +283,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 
 .flowers-img {
   width: 100%; 
-  transform: scale(1.15); /* Made bigger without moving other layout elements */
+  transform: scale(1.15); 
   display: block;
   flex-shrink: 0;
   margin: auto 0; 
@@ -422,20 +433,20 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 .curly-arrow-wrap {
   position: fixed;
   top: 70px; 
-  right: 175px; /* Moved further left */
+  right: 175px; 
   pointer-events: none;
   opacity: 0;
   animation: fadeIn 0.5s ease 0.3s forwards;
 }
 .manual-arrow-up {
-  width: 100px; /* Made bigger */
+  width: 100px; 
   height: auto;
 }
 
 /* === SIDE NUDGE STAGE 5 === */
 .side-nudge {
   position: fixed;
-  left: calc(50% + 295px); /* Positions it perfectly right next to the card */
+  left: calc(50% + 355px); /* Adjusted to sit perfectly next to the newly widened card */
   top: 50%;
   transform: translateY(-50%);
   display: flex;
@@ -455,7 +466,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 
 .nudge-text {
   font-family: var(--fp);
-  font-size: 1.1rem; /* Made bigger */
+  font-size: 1.1rem; 
   color: var(--beige);
   opacity: 0.9;
   max-width: 150px;

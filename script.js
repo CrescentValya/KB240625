@@ -20,27 +20,32 @@ document.addEventListener("DOMContentLoaded", () => {
   // Default volume to 5%
   audio.volume = 0.05;
 
+  function isMobile() { return window.innerWidth <= 700; }
+
   function goToStage(index) {
     stages.forEach((s, i) => {
       i === index ? s.classList.add('active') : s.classList.remove('active');
     });
-    
-    // Show global controls (play + volume) from stage 4 onward
+
+    // Show global controls from stage 4 onward
     if (index >= 3) {
       globalControls.classList.remove('hidden');
+      if (isMobile()) globalControls.classList.add('mobile-visible');
     }
-    
-    // Logic for Stage 5 (Letter) - 7 second delay for the nudge
+
+    // Stage 5 nudge logic
     if (index === 4) {
-      if (!nudgeRevealed) {
+      if (isMobile()) {
+        // On mobile show nudge immediately, no timer needed
+        sideNudge.classList.add('show-nudge', 'clickable');
+      } else if (!nudgeRevealed) {
         clearTimeout(nudgeTimer);
         nudgeTimer = setTimeout(() => {
-          nudgeRevealed = true; // Mark as revealed so it stays next time
+          nudgeRevealed = true;
           sideNudge.classList.add('show-nudge');
           setTimeout(() => sideNudge.classList.add('clickable'), 800);
-        }, 7000); // 7 seconds
+        }, 7000);
       } else {
-        // If they already waited the 7s previously, show it immediately
         sideNudge.classList.add('show-nudge', 'clickable');
       }
     }

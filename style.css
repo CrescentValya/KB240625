@@ -490,19 +490,15 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
 /* === MOBILE === */
 @media (max-width: 700px) {
 
-  /* Stage 1: title and subtitle, envelope at bottom */
+  /* Stage 1 */
   .main-title { font-size: 48px; }
   .main-title--sm { font-size: 36px; }
   .subtitle { font-size: 18px; }
-  .s1-text {
-    bottom: clamp(220px, 38vh, 320px);
-  }
+  .s1-text { bottom: clamp(220px, 38vh, 320px); }
   .env-img { width: 90vw; }
 
-  /* Stage 2: title much further down */
-  .s2-text {
-    top: clamp(160px, 25vh, 220px);
-  }
+  /* Stage 2: title further down, matching stage 1 text position feel */
+  .s2-text { top: clamp(240px, 38vh, 320px); }
   .env-open { width: 90vw; }
 
   /* All cards: full width, auto height */
@@ -517,29 +513,31 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   .hbd-title { font-size: 42px; margin-top: 20px; }
   .robin-img { width: 88%; }
 
-  /* Stage 4: pill centered above card, text smaller */
+  /* Global controls: NOT fixed on mobile, hidden by default */
   .global-controls {
-    position: relative;
+    position: fixed;
     top: auto;
     right: auto;
-    justify-content: center;
-    padding: 12px 0 8px;
+    bottom: 0;
+    left: 0;
     width: 100%;
-    z-index: 200;
+    justify-content: center;
+    padding: 10px 0;
+    background: rgba(144, 158, 98, 0.95);
+    z-index: 300;
+    display: none;
   }
+  /* Show controls bar only on stages 4, 5, 6 via JS class */
+  .global-controls.mobile-visible { display: flex; }
+
+  /* Stage 4: column layout, pill shown above card */
   #s4 {
     flex-direction: column;
     justify-content: flex-start;
     padding-top: 12px;
-    gap: 0;
+    overflow-y: auto;
+    align-items: center;
   }
-  #s4 .back-arrow {
-    position: fixed;
-    top: 36px;
-    left: 64px;
-  }
-  .song-body { font-size: 20px; }
-  .song-text-wrap { max-width: 90%; }
   .curly-arrow-wrap {
     position: relative;
     top: auto;
@@ -550,15 +548,26 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     width: 100%;
     opacity: 1;
     animation: none;
+    order: 1;
   }
   .manual-arrow-up { width: 100px; }
+  #s4 .card-portrait { order: 2; }
+  .song-body { font-size: 20px; }
+  .song-text-wrap { max-width: 90%; }
 
-  /* Stage 5: scrollable letter */
+  /* Stage 5: scrollable, pill at bottom bar */
+  #s5 {
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    align-items: center;
+    padding: 12px 0 70px;
+  }
   .card-portrait--letter {
-    overflow-y: auto !important;
+    overflow-y: visible !important;
     overflow-x: hidden;
     height: auto;
-    min-height: 75vh;
+    min-height: auto;
     padding: 20px 24px;
   }
   .letter-body { font-size: 15px; line-height: 1.7; }
@@ -567,7 +576,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   .letter-ps { font-size: 14px; }
   .letter-secret { font-size: 13px; }
 
-  /* Stage 5 nudge: repositioned for mobile, points up with message above */
+  /* Stage 5 nudge: below the card, arrow points up */
   .side-nudge {
     position: relative;
     left: auto;
@@ -575,9 +584,12 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     flex-direction: column;
     align-items: center;
     width: 95vw;
-    margin: 12px auto 0;
+    margin: 16px auto 0;
     gap: 4px;
+    opacity: 1 !important;
+    pointer-events: all !important;
   }
+  .side-nudge.show-nudge { animation: none; }
   .nudge-text {
     white-space: normal;
     font-size: 1rem;
@@ -588,20 +600,33 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     transform: rotate(-90deg);
   }
 
-  /* Stage 6: flowers bigger, scrollable */
+  /* Stage 6: scrollable, pill at bottom bar */
+  #s6 {
+    flex-direction: column;
+    justify-content: flex-start;
+    overflow-y: auto;
+    align-items: center;
+    padding: 12px 0 70px;
+  }
   .card-portrait--back {
     height: auto;
-    min-height: 75vh;
-    overflow-y: auto;
+    min-height: auto;
+    overflow: visible;
     padding: 24px 28px 20px;
   }
-  .flowers-img { width: 80%; }
+  .flowers-img { width: 85%; flex: none; }
   .back-title { font-size: 22px; }
   .back-label { font-size: 15px; }
   .honeysuckle-text { font-size: 0.8rem; }
 
-  /* Hide desktop-only positioned elements on mobile */
+  /* Back arrow stays fixed */
+  .back-arrow {
+    position: fixed;
+    top: 36px;
+    left: 64px;
+  }
+
+  .for-you-pill { font-size: 16px; padding: 8px 16px; }
   .vol-toggle-btn { width: 38px; height: 38px; }
   .slider-bg { height: 38px; }
-  .for-you-pill { font-size: 16px; padding: 8px 16px; }
 }

@@ -497,46 +497,66 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   .s1-text { bottom: clamp(220px, 38vh, 320px); }
   .env-img { width: 90vw; }
 
-  /* Stage 2: title further down, matching stage 1 text position feel */
-  .s2-text { top: clamp(240px, 38vh, 320px); }
+  /* Stage 2: move title up 1.5x from previous position */
+  .s2-text { top: clamp(180px, 29vh, 260px); }
   .env-open { width: 90vw; }
 
   /* All cards: full width, auto height */
   .card-portrait {
     width: 95vw;
     height: auto;
-    min-height: 75vh;
+    min-height: auto;
     max-height: none;
   }
 
-  /* Stage 3 */
+  /* Stage 3: back arrow fixed top, card scrolls underneath */
   .hbd-title { font-size: 42px; margin-top: 20px; }
   .robin-img { width: 88%; }
 
-  /* Global controls: NOT fixed on mobile, hidden by default */
+  /* Back arrow: always fixed top left, high z-index, never overlaps card content */
+  .back-arrow {
+    position: fixed;
+    top: 12px;
+    left: 16px;
+    z-index: 500;
+    font-size: 2.2rem;
+    background: rgba(144, 158, 98, 0.7);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+  }
+
+  /* Global controls: move to TOP on mobile, not bottom */
   .global-controls {
     position: fixed;
-    top: auto;
-    right: auto;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    justify-content: center;
-    padding: 10px 0;
-    background: rgba(144, 158, 98, 0.95);
-    z-index: 300;
+    top: 8px;
+    right: 8px;
+    bottom: auto;
+    left: auto;
+    width: auto;
+    justify-content: flex-end;
+    padding: 0;
+    background: transparent;
+    z-index: 400;
     display: none;
+    gap: 6px;
   }
-  /* Show controls bar only on stages 4, 5, 6 via JS class */
   .global-controls.mobile-visible { display: flex; }
+  .for-you-pill { font-size: 15px; padding: 8px 14px; }
+  .vol-toggle-btn { width: 36px; height: 36px; }
+  .slider-bg { height: 36px; }
 
-  /* Stage 4: column layout, pill shown above card */
+  /* Stage 4: layout: arrow top right, pill top right (via global-controls), then card */
   #s4 {
     flex-direction: column;
     justify-content: flex-start;
-    padding-top: 12px;
     overflow-y: auto;
     align-items: center;
+    padding-top: 60px;
   }
   .curly-arrow-wrap {
     position: relative;
@@ -548,24 +568,22 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     width: 100%;
     opacity: 1;
     animation: none;
-    order: 1;
+    margin-bottom: 4px;
   }
-  .manual-arrow-up { width: 100px; }
-  #s4 .card-portrait { order: 2; }
+  .manual-arrow-up { width: 90px; }
   .song-body { font-size: 20px; }
   .song-text-wrap { max-width: 90%; }
 
-  /* Stage 5: scrollable, pill at bottom bar */
+  /* Stage 5: scrollable, no fixed pill overlap */
   #s5 {
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
     align-items: center;
-    padding: 12px 0 70px;
+    padding: 60px 0 24px;
   }
   .card-portrait--letter {
-    overflow-y: visible !important;
-    overflow-x: hidden;
+    overflow: visible !important;
     height: auto;
     min-height: auto;
     padding: 20px 24px;
@@ -576,7 +594,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
   .letter-ps { font-size: 14px; }
   .letter-secret { font-size: 13px; }
 
-  /* Stage 5 nudge: below the card, arrow points up */
+  /* Stage 5 nudge: remove arrow image, just text below card */
   .side-nudge {
     position: relative;
     left: auto;
@@ -584,7 +602,7 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     flex-direction: column;
     align-items: center;
     width: 95vw;
-    margin: 16px auto 0;
+    margin: 20px auto 0;
     gap: 4px;
     opacity: 1 !important;
     pointer-events: all !important;
@@ -595,18 +613,16 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     font-size: 1rem;
     text-align: center;
   }
-  .manual-arrow-left {
-    width: 80px;
-    transform: rotate(-90deg);
-  }
+  /* Hide arrow image on mobile, just show text */
+  .manual-arrow-left { display: none; }
 
-  /* Stage 6: scrollable, pill at bottom bar */
+  /* Stage 6: scrollable */
   #s6 {
     flex-direction: column;
     justify-content: flex-start;
     overflow-y: auto;
     align-items: center;
-    padding: 12px 0 70px;
+    padding: 60px 0 24px;
   }
   .card-portrait--back {
     height: auto;
@@ -614,19 +630,8 @@ html, body { width: 100%; height: 100%; overflow: hidden; background: var(--palm
     overflow: visible;
     padding: 24px 28px 20px;
   }
-  .flowers-img { width: 85%; flex: none; }
+  .flowers-img { width: 92%; flex: none; }
   .back-title { font-size: 22px; }
   .back-label { font-size: 15px; }
   .honeysuckle-text { font-size: 0.8rem; }
-
-  /* Back arrow stays fixed */
-  .back-arrow {
-    position: fixed;
-    top: 36px;
-    left: 64px;
-  }
-
-  .for-you-pill { font-size: 16px; padding: 8px 16px; }
-  .vol-toggle-btn { width: 38px; height: 38px; }
-  .slider-bg { height: 38px; }
 }
